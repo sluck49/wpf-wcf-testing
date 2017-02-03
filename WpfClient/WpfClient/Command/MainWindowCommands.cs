@@ -16,21 +16,24 @@ namespace WpfClient.Command
             public SubmitCommand(MainWindowViewModel viewModel)
             {
                 _viewModel = viewModel;
-                _viewModel.PropertyChanged += (sender, e) =>
+                _viewModel.NewFarkle.PropertyChanged += (sender, e) =>
                 {
-                    if (e.PropertyName == nameof(MainWindowViewModel.EnteredText))
+                    if (e.PropertyName == nameof(FarkleViewModel.Text))
                         OnCanExecuteChanged();
                 };
             }
 
             public override void Execute(object parameter)
             {
-                _viewModel.SubmittedValues.Add(_viewModel.EnteredText);
-                _viewModel.EnteredText = "";
+                _viewModel.SubmittedValues.Add(_viewModel.NewFarkle.Text);
+
+                _viewModel.NewFarkle.Text = "";
+                _viewModel.NewFarkle.Description = "";
+                _viewModel.NewFarkle.IsFarked = false;
             }
             public override bool CanExecute(object parameter)
             {
-                return !string.IsNullOrWhiteSpace(_viewModel.EnteredText);
+                return !string.IsNullOrWhiteSpace(_viewModel.NewFarkle?.Text);
             }
         }
         public class RemoveCommand : CommandBase

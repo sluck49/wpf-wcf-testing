@@ -9,18 +9,27 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
-        <TextBox x:Name="txtName" Grid.Column="0" Margin="10,5"
-                 Text="{Binding EnteredText, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center"/>
-        <Button Grid.Column="1" Margin="5" Padding="5" 
+        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">Name</TextBlock>
+        <TextBox Grid.Row="0" Grid.Column="1" Margin="10,5"
+                 Text="{Binding NewFarkle.Text, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">Description</TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="10,5"
+                 Text="{Binding NewFarkle.Description, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">Is Farked</TextBlock>
+        <CheckBox Grid.Row="2" Grid.Column="1" Margin="8 0 0 0" IsChecked="{Binding NewFarkle.IsFarked}"/>
+        <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" 
+                Margin="5" Padding="5" Width="70" 
                 Command="{Binding SubmitCommand}">Submit</Button>
-        <DataGrid Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding SubmittedValues}" AutoGenerateColumns="false" GridLinesVisibility="None" >
+        <DataGrid Grid.Row="4" Grid.ColumnSpan="2" ItemsSource="{Binding SubmittedValues}" AutoGenerateColumns="false" GridLinesVisibility="None" >
             <DataGrid.Columns>
                 <DataGridTemplateColumn Width="*">
                     <DataGridTemplateColumn.HeaderTemplate>

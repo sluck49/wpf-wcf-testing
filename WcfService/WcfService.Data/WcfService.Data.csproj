@@ -49,11 +49,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201702031716352_Initial.cs" />
+    <Compile Include="Migrations\201702031716352_Initial.Designer.cs">
+      <DependentUpon>201702031716352_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702031758420_AddedIsFarkedColumnToFarkle.cs" />
+    <Compile Include="Migrations\201702031758420_AddedIsFarkedColumnToFarkle.Designer.cs">
+      <DependentUpon>201702031758420_AddedIsFarkedColumnToFarkle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702031804579_AddGroobs.cs" />
+    <Compile Include="Migrations\201702031804579_AddGroobs.Designer.cs">
+      <DependentUpon>201702031804579_AddGroobs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Farkle.cs" />
+    <Compile Include="Models\Groob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WcfServiceDataContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201702031716352_Initial.resx">
+      <DependentUpon>201702031716352_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702031758420_AddedIsFarkedColumnToFarkle.resx">
+      <DependentUpon>201702031758420_AddedIsFarkedColumnToFarkle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702031804579_AddGroobs.resx">
+      <DependentUpon>201702031804579_AddGroobs.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

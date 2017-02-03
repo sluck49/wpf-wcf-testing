@@ -4,6 +4,7 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost/IISHostedService/WcfService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost/IISHostedService/WcfService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost/IISHostedService/WcfService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WcfService.Data.Models" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IWcfService_GetFarkleCount_InputMessage">
@@ -12,16 +13,35 @@
   <wsdl:message name="IWcfService_GetFarkleCount_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetFarkleCountResponse" />
   </wsdl:message>
+  <wsdl:message name="IWcfService_CreateFarkle_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateFarkle" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_CreateFarkle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateFarkleResponse" />
+  </wsdl:message>
   <wsdl:portType name="IWcfService">
     <wsdl:operation name="GetFarkleCount">
       <wsdl:input wsaw:Action="http://tempuri.org/IWcfService/GetFarkleCount" message="tns:IWcfService_GetFarkleCount_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IWcfService/GetFarkleCountResponse" message="tns:IWcfService_GetFarkleCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateFarkle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWcfService/CreateFarkle" message="tns:IWcfService_CreateFarkle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWcfService/CreateFarkleResponse" message="tns:IWcfService_CreateFarkle_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IWcfService" type="tns:IWcfService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetFarkleCount">
       <soap:operation soapAction="http://tempuri.org/IWcfService/GetFarkleCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateFarkle">
+      <soap:operation soapAction="http://tempuri.org/IWcfService/CreateFarkle" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

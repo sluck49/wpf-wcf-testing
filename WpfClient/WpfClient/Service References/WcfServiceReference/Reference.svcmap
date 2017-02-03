@@ -26,6 +26,7 @@
     <MetadataFile FileName="WcfService.disco" MetadataType="Disco" ID="bd561368-e95e-4e96-a9ea-a93bd77ecd6e" SourceId="1" SourceUrl="http://localhost/IISHostedService/WcfService.svc?disco" />
     <MetadataFile FileName="WcfService1.xsd" MetadataType="Schema" ID="b4b4948e-aa71-478b-8bd4-571151e22b44" SourceId="1" SourceUrl="http://localhost/IISHostedService/WcfService.svc?xsd=xsd1" />
     <MetadataFile FileName="WcfService.wsdl" MetadataType="Wsdl" ID="24a6bec0-ea4c-4223-a4b8-316d1cb4d62f" SourceId="1" SourceUrl="http://localhost/IISHostedService/WcfService.svc?wsdl" />
+    <MetadataFile FileName="WcfService2.xsd" MetadataType="Schema" ID="64710ccc-1251-42d1-a21e-2fd2a6186c02" SourceId="1" SourceUrl="http://localhost/IISHostedService/WcfService.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

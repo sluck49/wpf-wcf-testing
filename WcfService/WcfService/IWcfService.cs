@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using WcfService.Data.Models;
 
 namespace WcfService
 {
@@ -12,5 +13,8 @@ namespace WcfService
     {
         [OperationContract]
         int GetFarkleCount();
+
+        [OperationContract]
+        Farkle CreateFarkle(Farkle farkle);
     }    
 }

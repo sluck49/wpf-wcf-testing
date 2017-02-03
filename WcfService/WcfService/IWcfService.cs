@@ -17,7 +17,8 @@ namespace WcfService
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
 
-        // TODO: Add your service operations here
+        [OperationContract]
+        string GetFaultyData(int value);
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.

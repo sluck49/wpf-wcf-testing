@@ -26,5 +26,9 @@ namespace WcfService
             }
             return composite;
         }
+        public string GetFaultyData(int value)
+        {
+            throw new ApplicationException($"The value you entered ({value}) is not valid.");
+        }
     }
 }

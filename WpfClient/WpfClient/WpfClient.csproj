@@ -108,12 +108,6 @@
     <None Include="Service References\WcfServiceReference\WcfService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\WcfServiceReference\WcfService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\WcfServiceReference\WpfClient.WcfServiceReference.CompositeType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

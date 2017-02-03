@@ -65,7 +65,9 @@
     <Compile Include="Models\Farkle.cs" />
     <Compile Include="Models\Groob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WcfServiceDataContext.cs" />
+    <Compile Include="Repositories\FarkleRepository.cs" />
+    <Compile Include="Repositories\RepositoryBase.cs" />
+    <Compile Include="WcfServiceDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

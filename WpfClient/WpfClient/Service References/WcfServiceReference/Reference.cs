@@ -9,92 +9,17 @@
 //------------------------------------------------------------------------------
 
 namespace WpfClient.WcfServiceReference {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CompositeType", Namespace="http://schemas.datacontract.org/2004/07/WcfService")]
-    [System.SerializableAttribute()]
-    public partial class CompositeType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool BoolValueField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string StringValueField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool BoolValue {
-            get {
-                return this.BoolValueField;
-            }
-            set {
-                if ((this.BoolValueField.Equals(value) != true)) {
-                    this.BoolValueField = value;
-                    this.RaisePropertyChanged("BoolValue");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string StringValue {
-            get {
-                return this.StringValueField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.StringValueField, value) != true)) {
-                    this.StringValueField = value;
-                    this.RaisePropertyChanged("StringValue");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="WcfServiceReference.IWcfService")]
     public interface IWcfService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfService/GetData", ReplyAction="http://tempuri.org/IWcfService/GetDataResponse")]
-        string GetData(int value);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfService/GetFarkleCount", ReplyAction="http://tempuri.org/IWcfService/GetFarkleCountResponse")]
+        int GetFarkleCount();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfService/GetData", ReplyAction="http://tempuri.org/IWcfService/GetDataResponse")]
-        System.Threading.Tasks.Task<string> GetDataAsync(int value);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfService/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IWcfService/GetDataUsingDataContractResponse")]
-        WpfClient.WcfServiceReference.CompositeType GetDataUsingDataContract(WpfClient.WcfServiceReference.CompositeType composite);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfService/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IWcfService/GetDataUsingDataContractResponse")]
-        System.Threading.Tasks.Task<WpfClient.WcfServiceReference.CompositeType> GetDataUsingDataContractAsync(WpfClient.WcfServiceReference.CompositeType composite);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfService/GetFaultyData", ReplyAction="http://tempuri.org/IWcfService/GetFaultyDataResponse")]
-        string GetFaultyData(int value);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfService/GetFaultyData", ReplyAction="http://tempuri.org/IWcfService/GetFaultyDataResponse")]
-        System.Threading.Tasks.Task<string> GetFaultyDataAsync(int value);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfService/GetFarkleCount", ReplyAction="http://tempuri.org/IWcfService/GetFarkleCountResponse")]
+        System.Threading.Tasks.Task<int> GetFarkleCountAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -124,28 +49,12 @@ namespace WpfClient.WcfServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public string GetData(int value) {
-            return base.Channel.GetData(value);
+        public int GetFarkleCount() {
+            return base.Channel.GetFarkleCount();
         }
         
-        public System.Threading.Tasks.Task<string> GetDataAsync(int value) {
-            return base.Channel.GetDataAsync(value);
-        }
-        
-        public WpfClient.WcfServiceReference.CompositeType GetDataUsingDataContract(WpfClient.WcfServiceReference.CompositeType composite) {
-            return base.Channel.GetDataUsingDataContract(composite);
-        }
-        
-        public System.Threading.Tasks.Task<WpfClient.WcfServiceReference.CompositeType> GetDataUsingDataContractAsync(WpfClient.WcfServiceReference.CompositeType composite) {
-            return base.Channel.GetDataUsingDataContractAsync(composite);
-        }
-        
-        public string GetFaultyData(int value) {
-            return base.Channel.GetFaultyData(value);
-        }
-        
-        public System.Threading.Tasks.Task<string> GetFaultyDataAsync(int value) {
-            return base.Channel.GetFaultyDataAsync(value);
+        public System.Threading.Tasks.Task<int> GetFarkleCountAsync() {
+            return base.Channel.GetFarkleCountAsync();
         }
     }
 }

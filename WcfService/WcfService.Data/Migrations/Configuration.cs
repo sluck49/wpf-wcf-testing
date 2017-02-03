@@ -5,14 +5,14 @@ namespace WcfService.Data.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<WcfService.Data.WcfServiceDataContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<WcfService.Data.WcfServiceDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(WcfService.Data.WcfServiceDataContext context)
+        protected override void Seed(WcfService.Data.WcfServiceDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

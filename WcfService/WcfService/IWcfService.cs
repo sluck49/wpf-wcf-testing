@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using WcfService.Models;
 using WcfService.Requests;
 using WcfService.Responses;
 
@@ -17,5 +18,9 @@ namespace WcfService
 
         [OperationContract]
         CreateFarkleResponse CreateFarkle(CreateFarkleRequest request);
-    }    
+
+        [OperationContract]
+        IEnumerable<FarkleModel> GetFarkles();
+
+    }
 }

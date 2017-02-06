@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WcfService.Data.Models;
+using WcfService.Models;
 
 namespace WcfService.Responses
 {
     public class CreateFarkleResponse:WcfServiceResponseBase
     {
-        public Farkle NewFarkle { get; set; }
+        public FarkleModel NewFarkle { get; set; }
     }
 }

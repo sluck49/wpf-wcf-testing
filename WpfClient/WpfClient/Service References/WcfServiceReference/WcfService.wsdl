@@ -6,7 +6,7 @@
       <xsd:import schemaLocation="http://localhost/IISHostedService/WcfService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost/IISHostedService/WcfService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WcfService.Requests" />
       <xsd:import schemaLocation="http://localhost/IISHostedService/WcfService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/WcfService.Responses" />
-      <xsd:import schemaLocation="http://localhost/IISHostedService/WcfService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/WcfService.Data.Models" />
+      <xsd:import schemaLocation="http://localhost/IISHostedService/WcfService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/WcfService.Models" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IWcfService_GetFarkleCount_InputMessage">
@@ -21,6 +21,12 @@
   <wsdl:message name="IWcfService_CreateFarkle_OutputMessage">
     <wsdl:part name="parameters" element="tns:CreateFarkleResponse" />
   </wsdl:message>
+  <wsdl:message name="IWcfService_GetFarkles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFarkles" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_GetFarkles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFarklesResponse" />
+  </wsdl:message>
   <wsdl:portType name="IWcfService">
     <wsdl:operation name="GetFarkleCount">
       <wsdl:input wsaw:Action="http://tempuri.org/IWcfService/GetFarkleCount" message="tns:IWcfService_GetFarkleCount_InputMessage" />
@@ -29,6 +35,10 @@
     <wsdl:operation name="CreateFarkle">
       <wsdl:input wsaw:Action="http://tempuri.org/IWcfService/CreateFarkle" message="tns:IWcfService_CreateFarkle_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IWcfService/CreateFarkleResponse" message="tns:IWcfService_CreateFarkle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFarkles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWcfService/GetFarkles" message="tns:IWcfService_GetFarkles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWcfService/GetFarklesResponse" message="tns:IWcfService_GetFarkles_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IWcfService" type="tns:IWcfService">
@@ -44,6 +54,15 @@
     </wsdl:operation>
     <wsdl:operation name="CreateFarkle">
       <soap:operation soapAction="http://tempuri.org/IWcfService/CreateFarkle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFarkles">
+      <soap:operation soapAction="http://tempuri.org/IWcfService/GetFarkles" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

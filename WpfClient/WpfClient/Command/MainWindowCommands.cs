@@ -53,7 +53,6 @@ namespace WpfClient.Command
                 {
                     _viewModel.ErrorText = response.FailureReason;
                 }
-
             }
             public override bool CanExecute(object parameter)
             {

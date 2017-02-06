@@ -7,6 +7,7 @@ using System.Text;
 using WcfService.Data;
 using WcfService.Data.Models;
 using WcfService.Data.Repositories;
+using WcfService.Models;
 using WcfService.Requests;
 using WcfService.Responses;
 
@@ -52,7 +53,14 @@ namespace WcfService
                         IsFarked = request.IsFarked
                     });
                     _farkleRepository.SaveChanges();
-                    response.NewFarkle = result;
+
+                    response.NewFarkle = new FarkleModel()
+                    {
+                        Id= result.Id,
+                        Name = result.Name,
+                        Description = result.Description,
+                        IsFarked = result.IsFarked
+                    };
                     response.IsSuccess = true;
                 }
                 catch
@@ -61,6 +69,17 @@ namespace WcfService
                 }
             }
             return response;
+        }
+
+        public IEnumerable<FarkleModel> GetFarkles()
+        {
+            return _farkleRepository.GetAll().Select(x => new FarkleModel()
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Description = x.Description,
+                IsFarked = x.IsFarked
+            }).ToArray();
         }
     }
 }

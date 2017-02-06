@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using WpfClient.ViewModels;
+using WpfClient.WcfServiceReference;
 
 namespace WpfClient
 {
@@ -24,13 +25,13 @@ namespace WpfClient
             var container = new Container();
 
             // Register your types, for instance:
-            //container.Register<IQueryProcessor, QueryProcessor>(Lifestyle.Singleton);
+            container.Register<IWcfService>(()=>new WcfServiceClient("BasicHttpBinding_IWcfService"),Lifestyle.Singleton);
             //container.Register<IUserContext, WpfUserContext>();
 
             // Register your windows and view models:
-            
+
             //container.RegisterCollection<ViewModelBase>(,);
-            
+
             container.Verify();
 
             return container;

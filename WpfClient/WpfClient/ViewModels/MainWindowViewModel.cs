@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WpfClient.Command;
+using WpfClient.WcfServiceReference;
 
 namespace WpfClient.ViewModels
 {
@@ -50,10 +51,10 @@ namespace WpfClient.ViewModels
         public MainWindowCommands.SubmitCommand SubmitCommand { get; }
         public MainWindowCommands.RemoveCommand RemoveCommand { get; }
         
-        public MainWindowViewModel(FarkleViewModel newFarkleViewModel)
+        public MainWindowViewModel(FarkleViewModel newFarkleViewModel, IWcfService wcfService)
         {
             NewFarkle = newFarkleViewModel;
-            SubmitCommand = new MainWindowCommands.SubmitCommand(this);
+            SubmitCommand = new MainWindowCommands.SubmitCommand(this, wcfService);
             RemoveCommand = new MainWindowCommands.RemoveCommand(this);
         }
     }

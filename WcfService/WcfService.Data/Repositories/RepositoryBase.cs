@@ -15,7 +15,7 @@ namespace WcfService.Data.Repositories
         T Add(T item);
         void Remove(T item);
 
-        void Savechanges();
+        void SaveChanges();
     }
     public abstract class RepositoryBase<T> : IRepository<T>
         where T : class
@@ -48,7 +48,7 @@ namespace WcfService.Data.Repositories
             GetDbSet().Remove(item);
         }
 
-        public void Savechanges()
+        public void SaveChanges()
         {
             DbContext.SaveChanges();
         }

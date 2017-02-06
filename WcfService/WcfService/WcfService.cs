@@ -9,23 +9,24 @@ using WcfService.Data.Models;
 using WcfService.Data.Repositories;
 
 namespace WcfService
-{    
+{
     public class WcfService : IWcfService
     {
-        private readonly IFarkleRepository _farkleRepository;
+        private IFarkleRepository _farkleRepository;
 
         public WcfService()
         {
             _farkleRepository = new FarkleRepository(new WcfServiceDbContext()); //WCF sucks at DI apparently
         }
         public int GetFarkleCount()
-        {
-            return _farkleRepository.GetAll().Count();
+        {            
+            return _farkleRepository.GetCount();
         }
-
         public Farkle CreateFarkle(Farkle farkle)
         {
-            return farkle;
+            var result = _farkleRepository.Add(farkle);
+            _farkleRepository.SaveChanges();
+            return result;
         }
     }
 }

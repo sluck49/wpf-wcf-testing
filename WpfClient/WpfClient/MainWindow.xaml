@@ -20,7 +20,7 @@
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">Name</TextBlock>
         <TextBox Grid.Row="0" Grid.Column="1" Margin="10,5"
-                 Text="{Binding NewFarkle.Text, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center"/>
+                 Text="{Binding NewFarkle.Name, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center"/>
         <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">Description</TextBlock>
         <TextBox Grid.Row="1" Grid.Column="1" Margin="10,5"
                  Text="{Binding NewFarkle.Description, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center"/>
@@ -29,17 +29,19 @@
         <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" 
                 Margin="5" Padding="5" Width="70" 
                 Command="{Binding SubmitCommand}">Submit</Button>
-        <DataGrid Grid.Row="4" Grid.ColumnSpan="2" ItemsSource="{Binding SubmittedValues}" AutoGenerateColumns="false" GridLinesVisibility="None" >
+        <DataGrid Grid.Row="4" Grid.ColumnSpan="2" ItemsSource="{Binding SubmittedFarkles}" 
+                  AutoGenerateColumns="false" GridLinesVisibility="None" 
+                  CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Width="*">
                     <DataGridTemplateColumn.HeaderTemplate>
                         <DataTemplate>
-                            <TextBlock>Text</TextBlock>
+                            <TextBlock>Name</TextBlock>
                         </DataTemplate>
                     </DataGridTemplateColumn.HeaderTemplate>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate >
-                            <TextBlock Text="{Binding}"></TextBlock>                            
+                            <TextBlock Text="{Binding Name}" ToolTip="{Binding Description}"></TextBlock>                            
                         </DataTemplate>                            
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

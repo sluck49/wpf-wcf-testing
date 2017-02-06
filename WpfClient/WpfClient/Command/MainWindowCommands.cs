@@ -18,22 +18,27 @@ namespace WpfClient.Command
                 _viewModel = viewModel;
                 _viewModel.NewFarkle.PropertyChanged += (sender, e) =>
                 {
-                    if (e.PropertyName == nameof(FarkleViewModel.Text))
+                    if (e.PropertyName == nameof(FarkleViewModel.Name))
                         OnCanExecuteChanged();
                 };
             }
 
             public override void Execute(object parameter)
             {
-                _viewModel.SubmittedValues.Add(_viewModel.NewFarkle.Text);
+                _viewModel.SubmittedFarkles.Add(new FarkleViewModel()
+                {
+                    Name = _viewModel.NewFarkle.Name,
+                    Description = _viewModel.NewFarkle.Description,
+                    IsFarked = _viewModel.NewFarkle.IsFarked,
+                });
 
-                _viewModel.NewFarkle.Text = "";
+                _viewModel.NewFarkle.Name = "";
                 _viewModel.NewFarkle.Description = "";
                 _viewModel.NewFarkle.IsFarked = false;
             }
             public override bool CanExecute(object parameter)
             {
-                return !string.IsNullOrWhiteSpace(_viewModel.NewFarkle?.Text);
+                return !string.IsNullOrWhiteSpace(_viewModel.NewFarkle?.Name);
             }
         }
         public class RemoveCommand : CommandBase
@@ -47,7 +52,7 @@ namespace WpfClient.Command
 
             public override void Execute(object parameter)
             {
-                _viewModel.SubmittedValues.Remove(parameter?.ToString());
+                _viewModel.SubmittedFarkles.Remove((FarkleViewModel)parameter);
             }
         }
     }

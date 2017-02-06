@@ -11,13 +11,13 @@ namespace WpfClient.ViewModels
 {
     public class FarkleViewModel : ViewModelBase
     {
-        private string _text = "";
-        public string Text
+        private string _name = "";
+        public string Name
         {
-            get { return _text; }
+            get { return _name; }
             set
             {
-                SetValue(nameof(Text), value, () => _text = value);
+                SetValue(nameof(Name), value, () => _name = value);
             }
         }
         private string _description = "";
@@ -45,7 +45,7 @@ namespace WpfClient.ViewModels
     {
         public FarkleViewModel NewFarkle { get; } 
 
-        public ObservableCollection<string> SubmittedValues { get; set; } = new ObservableCollection<string>();
+        public ObservableCollection<FarkleViewModel> SubmittedFarkles { get; set; } = new ObservableCollection<FarkleViewModel>();
 
         public MainWindowCommands.SubmitCommand SubmitCommand { get; }
         public MainWindowCommands.RemoveCommand RemoveCommand { get; }

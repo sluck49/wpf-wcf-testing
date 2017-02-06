@@ -9,9 +9,11 @@
         Title="MainWindow" Height="350" Width="525">
     <Window.Resources>
         <converters:NullIfEmptyStringConverter x:Key="nullIfEmptyStringConverter"/>
+        <converters:NullOrWhitespaceStringToVisibilityConverter x:Key="nullOrWhitespaceStringToVisibilityConverter"/>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -30,10 +32,14 @@
                  Text="{Binding NewFarkle.Description, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center"/>
         <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">Is Farked</TextBlock>
         <CheckBox Grid.Row="2" Grid.Column="1" Margin="8 0 0 0" IsChecked="{Binding NewFarkle.IsFarked}"/>
-        <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" 
+        <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" 
+                  Text="{Binding ErrorText}"
+                   Visibility="{Binding ErrorText, Converter={StaticResource nullOrWhitespaceStringToVisibilityConverter}}" Foreground="Red"></TextBlock>
+        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" 
                 Margin="5" Padding="5" Width="70" 
+                IsDefault="True"
                 Command="{Binding SubmitCommand}">Submit</Button>
-        <DataGrid Grid.Row="4" Grid.ColumnSpan="2" ItemsSource="{Binding SubmittedFarkles}" 
+        <DataGrid Grid.Row="5" Grid.ColumnSpan="2" ItemsSource="{Binding SubmittedFarkles}"                   
                   AutoGenerateColumns="false" GridLinesVisibility="None" 
                   CanUserAddRows="False">
             <DataGrid.Columns>
@@ -45,8 +51,8 @@
                     </DataGridTemplateColumn.HeaderTemplate>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate >
-                            <TextBlock Text="{Binding Name}" ToolTip="{Binding Description, Converter={StaticResource nullIfEmptyStringConverter}}"></TextBlock>                            
-                        </DataTemplate>                            
+                            <TextBlock Text="{Binding Name}" ToolTip="{Binding Description, Converter={StaticResource nullIfEmptyStringConverter}}"></TextBlock>
+                        </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn Width="Auto" MinWidth="80">

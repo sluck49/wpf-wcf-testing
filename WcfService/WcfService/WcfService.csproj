@@ -57,6 +57,9 @@
   <ItemGroup>
     <Compile Include="IWcfService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\CreateFarkleRequest.cs" />
+    <Compile Include="Responses\CreateFarkleResponse.cs" />
+    <Compile Include="Responses\WcfServiceResponseBase.cs" />
     <Compile Include="WcfService.cs" />
   </ItemGroup>
   <ItemGroup>

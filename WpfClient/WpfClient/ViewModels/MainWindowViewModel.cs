@@ -44,7 +44,17 @@ namespace WpfClient.ViewModels
 
     public class MainWindowViewModel : ViewModelBase
     {
-        public FarkleViewModel NewFarkle { get; } 
+        public FarkleViewModel NewFarkle { get; }
+
+        private string _errorText = "";
+        public string ErrorText
+        {
+            get { return _errorText; }
+            set
+            {
+                SetValue(nameof(ErrorText), value, () => _errorText = value);
+            }
+        }
 
         public ObservableCollection<FarkleViewModel> SubmittedFarkles { get; set; } = new ObservableCollection<FarkleViewModel>();
 

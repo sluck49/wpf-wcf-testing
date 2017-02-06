@@ -65,6 +65,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\NullIfEmptyStringConverter.cs" />
+    <Compile Include="Converters\NullOrWhitespaceStringToBooleanConverter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Service References\WcfServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -123,7 +124,13 @@
     <None Include="Service References\WcfServiceReference\WcfService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\WcfServiceReference\WpfClient.WcfServiceReference.Farkle.datasource">
+    <None Include="Service References\WcfServiceReference\WcfService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WcfServiceReference\WcfService31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WcfServiceReference\WpfClient.WcfServiceReference.CreateFarkleResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>

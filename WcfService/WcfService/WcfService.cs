@@ -7,6 +7,8 @@ using System.Text;
 using WcfService.Data;
 using WcfService.Data.Models;
 using WcfService.Data.Repositories;
+using WcfService.Requests;
+using WcfService.Responses;
 
 namespace WcfService
 {
@@ -19,14 +21,30 @@ namespace WcfService
             _farkleRepository = new FarkleRepository(new WcfServiceDbContext()); //WCF sucks at DI apparently
         }
         public int GetFarkleCount()
-        {            
+        {
             return _farkleRepository.GetCount();
         }
-        public Farkle CreateFarkle(Farkle farkle)
+        public CreateFarkleResponse CreateFarkle(CreateFarkleRequest request)
         {
-            var result = _farkleRepository.Add(farkle);
-            _farkleRepository.SaveChanges();
-            return result;
+            var response = new CreateFarkleResponse();
+            
+            try
+            {
+                var result = _farkleRepository.Add(new Farkle()
+                {
+                    Name = request.Name,
+                    Description = request.Description,
+                    IsFarked = request.IsFarked
+                });
+                _farkleRepository.SaveChanges();
+                response.NewFarkle = result;
+                response.IsSuccess = true;
+            }
+            catch
+            {
+                response.FailureReason = "An error has occurred.";
+            }
+            return response;
         }
     }
 }

@@ -28,22 +28,31 @@ namespace WpfClient.Command
 
             public override void Execute(object parameter)
             {
-                var farkle = _wcfService.CreateFarkle(new Farkle()
+                var response = _wcfService.CreateFarkle(new CreateFarkleRequest()
                 {
                     Name = _viewModel.NewFarkle.Name,
                     Description = _viewModel.NewFarkle.Description,
                     IsFarked = _viewModel.NewFarkle.IsFarked
                 });
-                _viewModel.SubmittedFarkles.Add(new FarkleViewModel()
+
+                if (response.IsSuccess)
                 {
-                    Name = farkle.Name,
-                    Description = farkle.Description,
-                    IsFarked = farkle.IsFarked,
-                });
-                
-                _viewModel.NewFarkle.Name = "";
-                _viewModel.NewFarkle.Description = "";
-                _viewModel.NewFarkle.IsFarked = false;
+                    _viewModel.SubmittedFarkles.Add(new FarkleViewModel()
+                    {
+                        Name = response.NewFarkle.Name,
+                        Description = response.NewFarkle.Description,
+                        IsFarked = response.NewFarkle.IsFarked,
+                    });
+
+                    _viewModel.NewFarkle.Name = "";
+                    _viewModel.NewFarkle.Description = "";
+                    _viewModel.NewFarkle.IsFarked = false;
+                    _viewModel.ErrorText = "";
+                }
+                else
+                {
+                    _viewModel.ErrorText = response.FailureReason;
+                }
 
             }
             public override bool CanExecute(object parameter)

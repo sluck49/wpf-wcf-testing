@@ -8,8 +8,10 @@ using WcfService.Data.Models;
 
 namespace WcfService.Data.Repositories
 {
-    public interface IFarkleRepository : IRepository<Farkle> {
+    public interface IFarkleRepository : IRepository<Farkle>
+    {
         int GetCount();
+        bool IsNameInUse(string name);
     }
     public class FarkleRepository : RepositoryBase<Farkle>, IFarkleRepository
     {
@@ -20,6 +22,11 @@ namespace WcfService.Data.Repositories
         public int GetCount()
         {
             return DbContext.Farkles.Count();
+        }
+
+        public bool IsNameInUse(string name)
+        {
+            return DbContext.Farkles.Any(x => x.Name == name);
         }
 
         protected override DbSet<Farkle> GetDbSet()

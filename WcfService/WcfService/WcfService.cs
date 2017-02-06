@@ -27,22 +27,38 @@ namespace WcfService
         public CreateFarkleResponse CreateFarkle(CreateFarkleRequest request)
         {
             var response = new CreateFarkleResponse();
-            
-            try
+
+            if (string.IsNullOrWhiteSpace(request.Name))
             {
-                var result = _farkleRepository.Add(new Farkle()
-                {
-                    Name = request.Name,
-                    Description = request.Description,
-                    IsFarked = request.IsFarked
-                });
-                _farkleRepository.SaveChanges();
-                response.NewFarkle = result;
-                response.IsSuccess = true;
+                response.FailureReason = "Name is required.";
             }
-            catch
+            else if(request.Name.Length > 100)
             {
-                response.FailureReason = "An error has occurred.";
+                response.FailureReason = "The maximum length of Name is 100.";
+            }
+            else if (_farkleRepository.IsNameInUse(request.Name))
+            {
+                response.FailureReason = "That Name is already in use.";
+            }
+
+            if (string.IsNullOrWhiteSpace(response.FailureReason))
+            {
+                try
+                {
+                    var result = _farkleRepository.Add(new Farkle()
+                    {
+                        Name = request.Name,
+                        Description = request.Description,
+                        IsFarked = request.IsFarked
+                    });
+                    _farkleRepository.SaveChanges();
+                    response.NewFarkle = result;
+                    response.IsSuccess = true;
+                }
+                catch
+                {
+                    response.FailureReason = "An error has occurred.";
+                }
             }
             return response;
         }

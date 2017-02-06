@@ -12,6 +12,7 @@ namespace WcfService.Data.Repositories
     {
         int GetCount();
         bool IsNameInUse(string name);
+        void Remove(int id);
     }
     public class FarkleRepository : RepositoryBase<Farkle>, IFarkleRepository
     {
@@ -27,6 +28,16 @@ namespace WcfService.Data.Repositories
         public bool IsNameInUse(string name)
         {
             return DbContext.Farkles.Any(x => x.Name == name);
+        }
+
+        public void Remove(int id)
+        {
+            var farkle = Get(id);
+            if (farkle != null)
+            {
+                Remove(farkle);
+                DbContext.SaveChanges();
+            }
         }
 
         protected override DbSet<Farkle> GetDbSet()

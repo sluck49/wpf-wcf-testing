@@ -81,5 +81,10 @@ namespace WcfService
                 IsFarked = x.IsFarked
             }).ToArray();
         }
+
+        public void RemoveFarkle(int id)
+        {
+            _farkleRepository.Remove(id);                
+        }
     }
 }

@@ -82,7 +82,7 @@ namespace WpfClient.ViewModels
             SubmittedFarkles = new ObservableCollection<FarkleViewModel>(wcfService.GetFarkles().Select(x => mapper.Map<FarkleViewModel>(x)));
             
             SubmitCommand = new MainWindowCommands.SubmitCommand(this, wcfService, mapper);
-            RemoveCommand = new MainWindowCommands.RemoveCommand(this);
+            RemoveCommand = new MainWindowCommands.RemoveCommand(this, wcfService);
         }
     }
 }

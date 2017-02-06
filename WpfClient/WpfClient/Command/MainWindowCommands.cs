@@ -58,15 +58,19 @@ namespace WpfClient.Command
         public class RemoveCommand : CommandBase
         {
             private readonly MainWindowViewModel _viewModel;
+            private readonly IWcfService _wcfService;
 
-            public RemoveCommand(MainWindowViewModel viewModel)
+            public RemoveCommand(MainWindowViewModel viewModel, IWcfService wcfService)
             {
                 _viewModel = viewModel;
+                _wcfService = wcfService;
             }
 
             public override void Execute(object parameter)
             {
-                _viewModel.SubmittedFarkles.Remove((FarkleViewModel)parameter);
+                var farkle = (FarkleViewModel)parameter;
+                _wcfService.RemoveFarkle(farkle.Id);
+                _viewModel.SubmittedFarkles.Remove(farkle);
             }
         }
     }

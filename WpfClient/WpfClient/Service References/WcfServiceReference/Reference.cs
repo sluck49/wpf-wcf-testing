@@ -289,6 +289,12 @@ namespace WpfClient.WcfServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfService/GetFarkles", ReplyAction="http://tempuri.org/IWcfService/GetFarklesResponse")]
         System.Threading.Tasks.Task<WpfClient.WcfServiceReference.FarkleModel[]> GetFarklesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfService/RemoveFarkle", ReplyAction="http://tempuri.org/IWcfService/RemoveFarkleResponse")]
+        void RemoveFarkle(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfService/RemoveFarkle", ReplyAction="http://tempuri.org/IWcfService/RemoveFarkleResponse")]
+        System.Threading.Tasks.Task RemoveFarkleAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -340,6 +346,14 @@ namespace WpfClient.WcfServiceReference {
         
         public System.Threading.Tasks.Task<WpfClient.WcfServiceReference.FarkleModel[]> GetFarklesAsync() {
             return base.Channel.GetFarklesAsync();
+        }
+        
+        public void RemoveFarkle(int id) {
+            base.Channel.RemoveFarkle(id);
+        }
+        
+        public System.Threading.Tasks.Task RemoveFarkleAsync(int id) {
+            return base.Channel.RemoveFarkleAsync(id);
         }
     }
 }

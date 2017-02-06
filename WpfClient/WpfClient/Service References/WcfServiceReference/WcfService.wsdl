@@ -27,6 +27,12 @@
   <wsdl:message name="IWcfService_GetFarkles_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetFarklesResponse" />
   </wsdl:message>
+  <wsdl:message name="IWcfService_RemoveFarkle_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFarkle" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_RemoveFarkle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFarkleResponse" />
+  </wsdl:message>
   <wsdl:portType name="IWcfService">
     <wsdl:operation name="GetFarkleCount">
       <wsdl:input wsaw:Action="http://tempuri.org/IWcfService/GetFarkleCount" message="tns:IWcfService_GetFarkleCount_InputMessage" />
@@ -39,6 +45,10 @@
     <wsdl:operation name="GetFarkles">
       <wsdl:input wsaw:Action="http://tempuri.org/IWcfService/GetFarkles" message="tns:IWcfService_GetFarkles_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IWcfService/GetFarklesResponse" message="tns:IWcfService_GetFarkles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFarkle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWcfService/RemoveFarkle" message="tns:IWcfService_RemoveFarkle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWcfService/RemoveFarkleResponse" message="tns:IWcfService_RemoveFarkle_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IWcfService" type="tns:IWcfService">
@@ -63,6 +73,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetFarkles">
       <soap:operation soapAction="http://tempuri.org/IWcfService/GetFarkles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFarkle">
+      <soap:operation soapAction="http://tempuri.org/IWcfService/RemoveFarkle" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

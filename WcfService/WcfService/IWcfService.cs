@@ -21,5 +21,8 @@ namespace WcfService
 
         [OperationContract]
         IEnumerable<FarkleModel> GetFarkles();
+
+        [OperationContract]
+        void RemoveFarkle(int id);
     }
 }

@@ -15,6 +15,8 @@ namespace WcfService.Data.Models
         public int Id { get; set; }
 
         [Required]
+        [StringLength(100)]
+        [Index("UQ_Farkle_Name", IsUnique =true)]
         public string Name { get; set; }
         public string Description { get; set; }
         

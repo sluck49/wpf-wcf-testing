@@ -61,6 +61,10 @@
     <Compile Include="Migrations\201702031804579_AddGroobs.Designer.cs">
       <DependentUpon>201702031804579_AddGroobs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702061749508_MakeFarkleNameUnique.cs" />
+    <Compile Include="Migrations\201702061749508_MakeFarkleNameUnique.Designer.cs">
+      <DependentUpon>201702061749508_MakeFarkleNameUnique.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Farkle.cs" />
     <Compile Include="Models\Groob.cs" />
@@ -85,6 +89,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702031804579_AddGroobs.resx">
       <DependentUpon>201702031804579_AddGroobs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702061749508_MakeFarkleNameUnique.resx">
+      <DependentUpon>201702061749508_MakeFarkleNameUnique.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

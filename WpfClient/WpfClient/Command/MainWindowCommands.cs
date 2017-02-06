@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,12 +14,15 @@ namespace WpfClient.Command
         public class SubmitCommand : CommandBase
         {
             private readonly MainWindowViewModel _viewModel;
-            private IWcfService _wcfService;
+            private readonly IWcfService _wcfService;
+            private readonly IMapper _mapper;
 
-            public SubmitCommand(MainWindowViewModel viewModel, IWcfService wcfService)
+            public SubmitCommand(MainWindowViewModel viewModel, IWcfService wcfService, IMapper mapper)
             {
                 _viewModel = viewModel;
                 _wcfService = wcfService;
+                _mapper = mapper;
+
                 _viewModel.NewFarkle.PropertyChanged += (sender, e) =>
                 {
                     if (e.PropertyName == nameof(FarkleViewModel.Name))
@@ -28,21 +32,13 @@ namespace WpfClient.Command
 
             public override void Execute(object parameter)
             {
-                var response = _wcfService.CreateFarkle(new CreateFarkleRequest()
-                {
-                    Name = _viewModel.NewFarkle.Name,
-                    Description = _viewModel.NewFarkle.Description,
-                    IsFarked = _viewModel.NewFarkle.IsFarked
-                });
+                var request = _mapper.Map<CreateFarkleRequest>(_viewModel.NewFarkle);
+                var response = _wcfService.CreateFarkle(request);
 
                 if (response.IsSuccess)
                 {
-                    _viewModel.SubmittedFarkles.Add(new FarkleViewModel()
-                    {
-                        Name = response.NewFarkle.Name,
-                        Description = response.NewFarkle.Description,
-                        IsFarked = response.NewFarkle.IsFarked,
-                    });
+                    var farkleViewModel = _mapper.Map<FarkleViewModel>(response.NewFarkle);
+                    _viewModel.SubmittedFarkles.Add(farkleViewModel);
 
                     _viewModel.NewFarkle.Name = "";
                     _viewModel.NewFarkle.Description = "";

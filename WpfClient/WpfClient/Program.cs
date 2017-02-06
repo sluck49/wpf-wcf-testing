@@ -1,4 +1,5 @@
-﻿using SimpleInjector;
+﻿using AutoMapper;
+using SimpleInjector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,7 @@ namespace WpfClient
 
             // Register your types, for instance:
             container.Register<IWcfService>(()=>new WcfServiceClient("BasicHttpBinding_IWcfService"),Lifestyle.Singleton);
+            container.Register<IMapper>(CreateAutoMapper, Lifestyle.Singleton);
             //container.Register<IUserContext, WpfUserContext>();
 
             // Register your windows and view models:
@@ -35,6 +37,16 @@ namespace WpfClient
             container.Verify();
 
             return container;
+        }
+
+        private static IMapper CreateAutoMapper()
+        {
+            Mapper.Initialize(config => {
+                config.CreateMap<FarkleModel, FarkleViewModel>().ReverseMap();
+                config.CreateMap<CreateFarkleRequest, FarkleViewModel>().ForMember(x => x.Id, o => o.Ignore());
+            });
+            Mapper.AssertConfigurationIsValid();
+            return Mapper.Configuration.CreateMapper();
         }
 
         private static void RunApplication(Container container)

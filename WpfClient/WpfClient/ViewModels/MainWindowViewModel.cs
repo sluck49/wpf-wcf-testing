@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -12,6 +13,16 @@ namespace WpfClient.ViewModels
 {
     public class FarkleViewModel : ViewModelBase
     {
+        private int _id;
+        public int Id
+        {
+            get { return _id; }
+            set
+            {
+                SetValue(nameof(Id), value, () => _id = value);
+            }
+        }
+
         private string _name = "";
         public string Name
         {
@@ -61,10 +72,16 @@ namespace WpfClient.ViewModels
         public MainWindowCommands.SubmitCommand SubmitCommand { get; }
         public MainWindowCommands.RemoveCommand RemoveCommand { get; }
         
-        public MainWindowViewModel(FarkleViewModel newFarkleViewModel, IWcfService wcfService)
+        public MainWindowViewModel(
+            FarkleViewModel newFarkleViewModel, 
+            IWcfService wcfService,
+            IMapper mapper)
         {
             NewFarkle = newFarkleViewModel;
-            SubmitCommand = new MainWindowCommands.SubmitCommand(this, wcfService);
+
+            SubmittedFarkles = new ObservableCollection<FarkleViewModel>(wcfService.GetFarkles().Select(x => mapper.Map<FarkleViewModel>(x)));
+            
+            SubmitCommand = new MainWindowCommands.SubmitCommand(this, wcfService, mapper);
             RemoveCommand = new MainWindowCommands.RemoveCommand(this);
         }
     }
